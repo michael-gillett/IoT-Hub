@@ -1,11 +1,11 @@
 $(() ->
   # Expand/ Collapse the device drawer
   $('.info-row').click ->
-    $(this).siblings('.drawer').slideToggle(250, 'linear');
+    $(this).siblings('.drawer').toggle();
     $(this).find('.arrow').toggleClass('icon-down-open icon-up-close')
 
   # Switch toggler
-  $('.switch').change ->
+  $('.switch').change () ->
     device = $(this).closest('.device')
     id = device.data('id')
 
@@ -17,7 +17,6 @@ $(() ->
     device = $(this).closest('.device')
     id = device.data('id')
     percent = $(this).val()
-    console.log(percent)
     # {id:"1", event:"adjust", value:"250"}
     change_state(id, "adjust", percent)
 
@@ -27,7 +26,5 @@ $(() ->
     if exec == 'adjust'
       data['value'] = value
 
-    $.post('/device', data, (res) ->
-      console.log(res)
-    )
+    $.post('/device', data)
 )

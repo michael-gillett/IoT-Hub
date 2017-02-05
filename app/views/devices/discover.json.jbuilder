@@ -5,6 +5,8 @@ json.discoveredAppliances do
     arr = ['turnOn', 'turnOff']
     if device.deviceType != '0'
       arr.append('setPercentage')
+      arr.append('incrementPercentage')
+      arr.append('decrementPercentage')
     end
     json.set! 'actions', arr
   end
