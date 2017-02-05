@@ -27,7 +27,7 @@ class ParticleController < ApplicationController
             manufacturerName: "particle",
             modelName: "particle #{device['type']}",
             version: "1.0",
-            friendlyName: "#{device['type']}",
+            friendlyName: device['id'],
             friendlyDescription: "A #{device['type']} connected to #{photon.name}",
             isReachable: "true",
             photonId: photon.id

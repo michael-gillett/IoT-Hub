@@ -1,0 +1,38 @@
+.container-fluid
+  .row
+    .header.purple-gradient
+      %i.material-icons home
+  .row
+    .col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+      .row
+        %h3 Your Sensors
+        .row
+          -@sensors.each do |s|
+            .col-xl-3.col-sm-4
+              .tile
+                .row
+                  .col-xs-4
+                    %i{class: s[:icon]}
+                  .col-xs-8.text-center
+                    .value=s[:value]
+                    =s[:label]
+      .row
+        %h3 Your Devices
+        .row
+        -@devices.each do |d|
+          .device
+            .info-row
+              .left
+                %i.icon-lamp
+                .active
+              .middle
+                .name=d.friendlyName
+                .description=d.friendlyDescription
+              .actions
+                %label.switch
+                  %input{type: "checkbox"}
+                    .slider.round
+                %i.icon-down-open.arrow
+            .drawer
+              %input.range-slider{type: "range", min: "0", max: "100", value: "5"}
+

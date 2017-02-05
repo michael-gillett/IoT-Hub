@@ -10,6 +10,14 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require material-design/bootstrap.min
+ *= require material-design/bootstrap-material-design
  *= require_tree .
  *= require_self
  */
+
+.purple-gradient {
+  background: #AA076B; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #AA076B , #61045F); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #AA076B , #61045F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
