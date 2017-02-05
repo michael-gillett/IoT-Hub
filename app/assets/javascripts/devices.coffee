@@ -20,6 +20,28 @@ $(() ->
     # {id:"1", event:"adjust", value:"250"}
     change_state(id, "adjust", percent)
 
+  $('.btn-success').click ->
+    color = 'green'
+    device = $(this).closest('.device')
+    id = device.data('id')
+    exec = 'adjust'
+    change_state(id, 'adjust', color)
+
+  $('.btn-danger').click ->
+    color = 'red'
+    device = $(this).closest('.device')
+    id = device.data('id')
+    exec = 'adjust'
+    change_state(id, 'adjust', color)
+
+  $('.btn-info').click ->
+    color = 'blue'
+    device = $(this).closest('.device')
+    id = device.data('id')
+    exec = 'adjust'
+    change_state(id, 'adjust', color)
+
+
 
   change_state = (id, exec, value) ->
     data = {"id": id, "event": exec}

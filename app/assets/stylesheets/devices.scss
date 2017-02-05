@@ -100,11 +100,12 @@ $panel-border-color: #ddd;
 
 .drawer {
   display: none;
-  height: 50px;
+  height: 60px;
   width: 100%;
   background: #ddd;
   border-top: 1px solid #cdcdcd;
-  padding: 10px;
+  padding: 5px;
+  padding-top: 0;
 }
 
 .range-slider {

@@ -35,5 +35,9 @@
                 %i.icon-down-open.arrow
             -if d.deviceType != '0'
               .drawer
-              -if d.deviceType == '1'
-                %input.range-slider{type: "range", min: "30", max: "155", value: "5"}
+                -if d.deviceType == '1'
+                  %input.range-slider{type: "range", min: "30", max: "155", value: "5"}
+                -else
+                  %button.btn.btn-danger.btn-raised Red
+                  %button.btn.btn-info.btn-raised Blue
+                  %button.btn.btn-success.btn-raised Green
