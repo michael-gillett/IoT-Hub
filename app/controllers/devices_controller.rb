@@ -1,5 +1,6 @@
 class DevicesController < ApplicationController
   def discover
+    render :discover
   end
 
   def index
