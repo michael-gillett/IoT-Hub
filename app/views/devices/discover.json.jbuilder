@@ -1,7 +1,11 @@
 json.discoveredAppliances do
   json.array! Device.all do |device|
-    json.extract! device, :applianceId, :manufacturerName, :modelName, :version, :friendlyName, :friendlyDescription
+    json.extract! device, :applianceId, :manufacturerName, :modelName, :version, :friendlyName, :friendlyDescription, :deviceType
     json.isReachable true
-    json.actions ['turnOn', 'turnOff']
+    arr = ['turnOn', 'turnOff']
+    if device.deviceType != '0'
+      arr.append('setPercentage')
+    end
+    json.set! 'actions', arr
   end
 end

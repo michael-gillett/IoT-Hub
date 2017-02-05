@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205043450) do
+ActiveRecord::Schema.define(version: 20170205124012) do
 
   create_table "devices", force: :cascade do |t|
     t.string   "applianceId"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170205043450) do
     t.string   "photonId"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "deviceType"
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|

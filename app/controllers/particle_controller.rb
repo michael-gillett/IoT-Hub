@@ -1,36 +1,40 @@
 require 'particle'
 class ParticleController < ApplicationController
+  EXEC_MAP = {"turn_off" => "0", "turn_on" => "1", "adjust" => "2"}
+  TYPE_MAP = {"0" => "0", "1" => "1", "2" => "2"}
+
   def contact_device
-    photonId = Device.where(applianceId: params[:id]).first.photonId
-    case params[:event]
-      when "turn_on"
-        Particle.device(photonId).function('turn_on', '')
-      when "turn_off"
-        Particle.device(photonId).function('turn_off', '')
-      else
-        puts 'Event not found'
+    device = Device.where(applianceId: params[:id]).first
+    photonId = device.photonId
+    type = device.deviceType
+
+    state = { id: params[:id],
+              t: TYPE_MAP[type],
+              e: EXEC_MAP[params[:event]]}
+
+    if params[:event] == "adjust"
+      state[:v] = params[:value]
     end
+
+    Particle.device(photonId).function('change_state', state.to_json)
     render nothing: true, status: :ok
   end
 
   def refresh_devices
     Particle.devices.each do |photon|
-      if photon.connected? and photon.name == 'tree-photon'
-        puts photon.name
-         # not photon.variables('device_list').nil?
-
+      if photon.connected?
         device_json_string = JSON.parse(photon.variable('device_list'))
         device_json_string['devices'].each do |device|
-          puts device['id'], device['type']
           Device.create(
             applianceId: device['id'],
             manufacturerName: "particle",
-            modelName: "particle #{device['type']}",
+            modelName: "particle #{device['t']}",
             version: "1.0",
-            friendlyName: device['id'],
-            friendlyDescription: "A #{device['type']} connected to #{photon.name}",
+            friendlyName: "#{device['t']} #{device['id']}",
+            friendlyDescription: "A #{device['t']} connected to #{photon.name}",
             isReachable: "true",
-            photonId: photon.id
+            photonId: photon.id,
+            deviceType: TYPE_MAP[device['t']]
           )
         end
       end

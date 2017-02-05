@@ -20,7 +20,7 @@
         %h3 Your Devices
         .row
         -@devices.each do |d|
-          .device
+          .device{data: {id: d.applianceId}}
             .info-row
               .left
                 %i.icon-lamp
@@ -34,5 +34,4 @@
                     .slider.round
                 %i.icon-down-open.arrow
             .drawer
-              %input.range-slider{type: "range", min: "0", max: "100", value: "5"}
-
+              %input.range-slider{type: "range", min: "0", max: "180", value: "5"}
